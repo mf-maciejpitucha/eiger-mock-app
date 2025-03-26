@@ -5,6 +5,12 @@ import httpProxy from 'http-proxy';
 import { WebSocketServer } from 'ws';
 import bodyParser from 'body-parser';
 import { getMockedData } from './mockResolver.js';
+import { renderClient } from './client.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const proxy = httpProxy.createProxyServer({
   ws: true,
@@ -14,6 +20,10 @@ const wsCache = [];
 const app = express();
 const server = createServer(app);
 
+app.get('/app', (req, res) => {
+  res.send(renderClient());
+});
+
 app.use(bodyParser.json())
 app.post('/mock-api/send-ws-message', (req, res) => {
   wsCache.forEach(ws => {
@@ -21,6 +31,9 @@ app.post('/mock-api/send-ws-message', (req, res) => {
   });
   res.status(200).end();
 });
+
+app.use('/dist/assets/', express.static(path.join(__dirname, '../dist/assets/')));
+app.use('/node_modules/', express.static(path.join(__dirname, '../node_modules/')));
 
 app.use((req, res) => {
 

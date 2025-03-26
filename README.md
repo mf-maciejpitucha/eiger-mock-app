@@ -1,8 +1,18 @@
+## Development
+
 ### run proxy server
 ```npm run start:server```
 
 ### run client side
 ```npm run dev```
 
-### open page
+### open Eiger page
 ```localhost:3333```
+
+## Usage
+
+### run build
+```npm run build```
+
+### WS test app
+```http://localhost:3333/app```

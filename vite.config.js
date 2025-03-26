@@ -10,4 +10,13 @@ export default defineConfig({
       '/mock-api': 'http://localhost:3333',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
+    },
+    
+  },
 })
