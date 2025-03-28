@@ -1,3 +1,7 @@
+# Eiger Mock App
+
+![Eiger Mock App Demo](eiger_mock_app.gif)
+
 ## Development
 
 ### run proxy server
